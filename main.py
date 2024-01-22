@@ -7,7 +7,7 @@ import scraperLib
 
 
 # Title(s):
-st.title("Product Scraper")
+st.title("Product Scraper Dashboard")
 
 # Streamlit UI
 
