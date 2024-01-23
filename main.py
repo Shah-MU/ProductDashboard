@@ -56,7 +56,7 @@ if grid_table['selected_rows']:
 selected_row = None
 
 if not grid_table['selected_rows']:
-        st.info('Select a product to view more info.')
+        st.info('A product must be selected.')
 
 if grid_table['selected_rows']:
     selected_row = grid_table['selected_rows'][0]
