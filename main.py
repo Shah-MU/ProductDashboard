@@ -12,9 +12,9 @@ st.title("Product Scraper Dashboard")
 # Streamlit UI
 
 product_name = st.sidebar.text_input("Enter the product name:")
-num_items = st.sidebar.number_input("Enter the number of items:", min_value=1, value=10)
+num_items = st.sidebar.number_input("Enter the number of items:", min_value=1, value=5)
 
-if st.button("Scrape Products"):
+if st.sidebar.button("Search"):
     product_df = scraperLib.scrape_bestbuy_products(product_name, num_items)
 
     # Save DataFrame locally
@@ -56,7 +56,7 @@ if grid_table['selected_rows']:
 selected_row = None
 
 if not grid_table['selected_rows']:
-        st.info('Select a product to view more info.')
+        st.info('A product must be selected.')
 
 if grid_table['selected_rows']:
     selected_row = grid_table['selected_rows'][0]
