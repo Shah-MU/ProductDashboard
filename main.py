@@ -5,14 +5,37 @@ from st_aggrid import AgGrid, GridUpdateMode
 # custom
 import scraperLib
 
+st.set_page_config(page_title = "Main page")
+st.sidebar.success("Please select an tab")
 
 # Title(s):
 st.title("Product Scraper Dashboard")
 
 # Streamlit UI
 
+if 'shopping_list' not in st.session_state:
+    st.session_state.shopping_list = []
+
 product_name = st.sidebar.text_input("Enter the product name:")
 num_items = st.sidebar.number_input("Enter the number of items:", min_value=1, value=5)
+
+# Button to add the item to the shopping list
+if st.sidebar.button('Search', key = "add_button"):
+    if product_name.strip():  # Check if the input is not empty
+        st.session_state.shopping_list.append(product_name)
+        new_item = ''  # Clear the input field after adding the item
+        
+
+# Display the current shopping list
+if st.session_state.shopping_list:
+    for idx, item in enumerate(st.session_state.shopping_list, start=1):
+        st.sidebar.write(f"{idx}. {item}")
+        
+# Button to remove the item from the shopping list
+if st.sidebar.button('Remove', key='remove_button'):
+    if st.session_state.shopping_list:  # Check if the shopping list is not empty
+        removed_item = st.session_state.shopping_list.pop(idx - 1)
+        st.write(f"Removed: {removed_item}")
 
 if st.sidebar.button("Search"):
     product_df = scraperLib.scrape_bestbuy_products(product_name, num_items)
