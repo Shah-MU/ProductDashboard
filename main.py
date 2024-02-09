@@ -66,8 +66,3 @@ with col2:
 
     if not selected_row == None:
         st.image(selected_row['Image URL'], caption='Selected Image', use_column_width=True)
-
-
-
-
-
